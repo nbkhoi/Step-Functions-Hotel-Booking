@@ -1,58 +1,138 @@
+# Booking Hotel Workflows - Step Functions Demo
 
-# Welcome to your CDK Python project!
+---
+This repository contains the source code for the Booking Hotel Workflows demo. This demo showcases how to use AWS Step Functions to orchestrate a workflow that books a hotel room.
 
-This is a blank project for CDK development with Python.
+---
 
-The `cdk.json` file tells the CDK Toolkit how to execute your app.
+## Architecture
 
-This project is set up like a standard Python project.  The initialization
-process also creates a virtualenv within this project, stored under the `.venv`
-directory.  To create the virtualenv it assumes that there is a `python3`
-(or `python` for Windows) executable in your path with access to the `venv`
-package. If for any reason the automatic creation of the virtualenv fails,
-you can create the virtualenv manually.
+The architecture of the Booking Hotel Workflows demo is shown below:
 
-To manually create a virtualenv on MacOS and Linux:
+![Architecture](images/architecture.png)
 
-```
-$ python -m venv .venv
-```
+## Prerequisites
 
-After the init process completes and the virtualenv is created, you can use the following
-step to activate your virtualenv.
+To deploy the Booking Hotel Workflows demo, you need the following:
 
-```
-$ source .venv/bin/activate
-```
+- An AWS account
+- The AWS CLI installed
+- The AWS CDK installed
+- Python 3.11
 
-If you are a Windows platform, you would activate the virtualenv like this:
+## Deployment
 
-```
-% .venv\Scripts\activate.bat
-```
+To deploy the Booking Hotel Workflows demo, follow these steps:
 
-Once the virtualenv is activated, you can install the required dependencies.
+1. Clone the GitHub repository:
 
-```
-$ pip install -r requirements.txt
-```
+    ```bash
+    git clone
+    ```
+2. Change the directory:
 
-At this point you can now synthesize the CloudFormation template for this code.
+    ```bash
+    cd booking-hotel-workflows
+    ```
+3. Install the dependencies:
 
-```
-$ cdk synth
-```
+    ```bash
+    pip install -r requirements.txt
+    ```
+4. Deploy the stack:
 
-To add additional dependencies, for example other CDK libraries, just add
-them to your `setup.py` file and rerun the `pip install -r requirements.txt`
-command.
+    ```bash
+    cdk deploy
+    ```
+5. Confirm the deployment:
 
-## Useful commands
+    ```bash
+    Are you sure you want to deploy (y/n)?
+    ```
+6. Provide the confirmation:
 
- * `cdk ls`          list all stacks in the app
- * `cdk synth`       emits the synthesized CloudFormation template
- * `cdk deploy`      deploy this stack to your default AWS account/region
- * `cdk diff`        compare deployed stack with current state
- * `cdk docs`        open CDK documentation
+    ```bash
+    y
+    ```
+7. Wait for the stack to be deployed:
 
-Enjoy!
+    ```bash
+    booking-hotel-workflows: deploying...
+    ```
+8. View the resources created:
+
+    ```bash
+    Outputs:
+    booking-hotel-workflows.StackName = <STACK_NAME>
+    booking-hotel-workflows.StateMachineArn = <STATE_MACHINE_ARN>
+    ```
+9. Note the ARN of the state machine:
+
+10. Update the state machine ARN in the `app.py` file:
+
+    ```python
+    state_machine_arn = "<STATE_MACHINE_ARN>"
+    ```
+11. Run the application:
+
+    ```bash
+    python app.py
+    ```
+12. View the output:
+
+    ```bash
+    {
+        "booking_id": "1A2B3C4D5E6F",
+        "status": "PENDING"
+    }
+    ```
+13. View the state machine in the AWS Management Console:
+
+    ```bash
+    https://console.aws.amazon.com/states/home?region=us-east-1#/statemachines
+    ```
+14. View the state machine execution in the AWS Management Console:
+
+    ```bash
+    https://console.aws.amazon.com/states/home?region=us-east-1#/executions
+    ```
+15. View the state machine execution history in the AWS Management Console:
+
+    ```bash
+    https://console.aws.amazon.com/states/home?region=us-east-1#/executions/1A2B3C4D5E6F
+    ```
+16. View the state machine execution input and output in the AWS Management Console:
+
+    ```bash
+    https://console.aws.amazon.com/states/home?region=us-east-1#/executions/1A2B3C4D5E6F/input-output
+    ```
+17. View the state machine execution logs in the AWS Management Console:
+
+    ```bash
+    https://console.aws.amazon.com/cloudwatch/home?region=us-east-1#logStream:group=/aws/states/booking-hotel-workflows-BookingStateMachine-1A2B3C4D5E6F;stream=2022-01-01T00:00:00Z
+    ```
+18. View the state machine execution metrics in the AWS Management Console:
+
+    ```bash
+    https://console.aws.amazon.com/cloudwatch/home?region=us-east-1#metricsV2:graph=~();namespace=AWS/States;dimensions=StateMachineArn;search=booking-hotel-workflows-BookingStateMachine-1A2B3C4D5E6F
+    ```
+19. View the state machine execution alarms in the AWS Management Console:
+
+    ```bash
+    https://console.aws.amazon.com/cloudwatch/home?region=us-east-1#alarmsV2:alarmState=ALARM;search=booking-hotel-workflows-BookingStateMachine-1A2B3C4D5E6F
+    ```
+20. View the state machine execution events in the AWS Management Console:
+
+    ```bash
+    https://console.aws.amazon.com/eventbridge/home?region=us-east-1#/events
+    ```
+21. View the state machine execution notifications in the AWS Management Console:
+
+    ```bash
+    https://console.aws.amazon.com/sns/v3/home?region=us-east-1#/topics
+    ```
+22. View the state machine execution history in the AWS Management Console:
+
+    ```bash
+    https://console.aws.amazon.com/dynamodb/home?region=us-east-1#tables:selected=booking-hotel-workflows-BookingHistoryTable;tab=items
+    ```

@@ -1,7 +1,7 @@
 import aws_cdk as core
 import aws_cdk.assertions as assertions
 
-from reservation_confirmation_wf.reservation_confirmation_wf_stack import ReservationConfirmationWfStack
+from hotel_booking_wf.reservation_confirmation_wf_stack import ReservationConfirmationWfStack
 
 # example tests. To run these tests, uncomment this file along with the example
 # resource in reservation_confirmation_wf/reservation_confirmation_wf_stack.py
